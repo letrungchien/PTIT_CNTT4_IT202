@@ -1,0 +1,12 @@
+score
+use db_session2;
+
+CREATE TABLE Score(
+MSV INT NOT NULL,
+MaMH INT NOT NULL,
+DiemQT INT NOT NULL CHECK (DiemQT >=0 AND DiemQT <= 10),
+DiemCK INT NOT NULL CHECK (DiemCK >=0 AND DiemCK <= 10),
+
+FOREIGN KEY (MSV) REFERENCES student(MSV),
+FOREIGN KEY (MaMH) REFERENCES subject(MaMH)
+);

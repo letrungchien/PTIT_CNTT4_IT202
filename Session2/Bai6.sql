@@ -1,0 +1,64 @@
+
+use db_session2;
+
+
+-- Lớp 
+CREATE TABLE Class (
+    MaLop INT PRIMARY KEY,
+    TenLop VARCHAR(50),
+    NamHoc INT
+);
+
+
+-- Sinh viên
+CREATE TABLE student(
+MSV INT PRIMARY KEY,
+TenSV VARCHAR(50) NOT NULL
+);
+
+
+-- Môn học 
+CREATE TABLE Subject(
+MaMH INT PRIMARY KEY,
+TenMH VARCHAR(50) NOT NULL,
+TinChi INT NOT NULL CHECK(TinChi >0) 
+
+);
+ALTER TABLE Subject
+ADD MaGV INT;
+ALTER TABLE Subject
+ADD CONSTRAINT FK_Subject_Teacher
+FOREIGN KEY (MaGV)
+REFERENCES Teacher(MaGV);
+
+
+-- Giao Vien
+CREATE TABLE Teacher (
+    MaGV INT PRIMARY KEY,          
+    TenGV VARCHAR(50) NOT NULL,    
+    Email VARCHAR(100) UNIQUE
+);
+
+
+-- Điểm
+CREATE TABLE Score(
+MSV INT NOT NULL,
+MaMH INT NOT NULL,
+DiemQT INT NOT NULL CHECK (DiemQT >=0 AND DiemQT <= 10),
+DiemCK INT NOT NULL CHECK (DiemCK >=0 AND DiemCK <= 10),
+
+FOREIGN KEY (MSV) REFERENCES student(MSV),
+FOREIGN KEY (MaMH) REFERENCES subject(MaMH)
+);
+
+
+-- Đăng ký môn học
+CREATE TABLE Enrollment(
+MSV INT NOT NULL,
+MaMH INT NOT NULL,
+Ngay DATE NOT NULL,
+
+PRIMARY KEY (MSV, MaMH),
+FOREIGN KEY (MSV) REFERENCES student(MSV),
+FOREIGN KEY (MaMH) REFERENCES subject(MaMH)
+);
