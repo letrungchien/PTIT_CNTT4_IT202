@@ -26,9 +26,9 @@ select * from Orders;
 select * from Orders
 where total_amount>5000000;
 
-select * from Orders
-order by order_date desc
-limit 5;
+	select * from Orders
+	order by order_date desc
+	limit 5;
 
 select * from Orders
 where statust='completed'
