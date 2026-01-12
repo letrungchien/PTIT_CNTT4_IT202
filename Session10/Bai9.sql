@@ -1,6 +1,7 @@
 
 use social_network_pro;
 -- 2)Tạo một index có tên idx_user_gender trên cột gender của bảng users:
+
 create index idx_user_gender on users(gender);
 
 -- 3) Tạo một view tên view_user_activity để hiển thị tổng số lượng bài viết và bình luận của mỗi người dùng. Các cột trong view bao gồm: user_id (Mã người dùng), total_posts (Tổng số bài viết), total_comments (Tổng số bình luận).
